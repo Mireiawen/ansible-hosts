@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Mireiawen/ansible-role-hosts.svg?branch=master)](https://travis-ci.com/Mireiawen/ansible-role-hosts) [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-mireiawen.mosh-blueviolet)](https://galaxy.ansible.com/mireiawen/hosts)
+[![Build Status](https://travis-ci.com/Mireiawen/ansible-role-hosts.svg?branch=master)](https://travis-ci.com/Mireiawen/ansible-role-hosts) [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-mireiawen.hosts-blueviolet)](https://galaxy.ansible.com/mireiawen/hosts)
 
 # Ansible hosts
 
