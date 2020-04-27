@@ -1,0 +1,47 @@
+---
+## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
+
+dependency:
+  name: "galaxy"
+
+driver:
+  name: "docker"
+
+platforms:
+- name: "Fedora26"
+  image: "fedora:26"
+- name: "Fedora27"
+  image: "fedora:27"
+- name: "Fedora28"
+  image: "fedora:28"
+- name: "Fedora29"
+  image: "fedora:29"
+- name: "Fedora30"
+  image: "fedora:30"
+- name: "Fedora31"
+  image: "fedora:31"
+
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+
+provisioner:
+  name: "ansible"
+  playbooks:
+    converge: "../common/converge.yml"
+    verify: "../common/verify.yml"
+
+verifier:
+  name: "ansible"
+
+scenario:
+  test_sequence:
+  - "lint"
+  - "destroy"
+  - "syntax"
+  - "create"
+  - "converge"
+  - "idempotence"
+  - "verify"
+  - "destroy"

@@ -1,34 +1,76 @@
 ---
 ## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
 
+os: "linux"
+dist: "xenial"
 language: "python"
-python: "2.7"
 
-# Use the new container infrastructure
-sudo: false
-
-# Install ansible
-addons:
-  apt:
-    packages:
-    - "python-pip"
+services:
+- "docker"
 
 install:
-# Install ansible
-- "pip install ansible"
+# Install dependencies
+- "pip install ansible ansible-lint yamllint molecule docker"
 
-# Check ansible version
+# Make sure the role is found
+- "pushd .."
+- "ln -s ansible-role-hosts mireiawen.hosts"
+- "popd"
+
+# Print versions before running
+before_script:
 - "ansible --version"
+- "ansible-lint --version"
+- "yamllint --version"
+- "molecule --version"
 
-# Create ansible.cfg with correct roles_path
-- "printf '[defaults]\nroles_path=../' >ansible.cfg"
+stages:
+- "test"
 
-# Install Role from Ansible Galaxy
-- "ansible-galaxy install ypsman.hosts"
+jobs:
+  include:
 
-script:
-# Basic role syntax check
-- "ansible-playbook tests/test.yml -i tests/inventory --syntax-check"
+  # Default test: Alpine
+  - stage: "test"
+    name: "Alpine"
+    script:
+    - "molecule test"
+
+  # Test: Arch Linux
+  - stage: "test"
+    name: "Arch"
+    script:
+    - "molecule test --scenario-name arch"
+
+  # Test: CentOS
+  - stage: "test"
+    name: "CentOS"
+    script:
+    - "molecule test --scenario-name centos"
+
+  # Test: Debian
+  - stage: "test"
+    name: "Debian"
+    script:
+    - "molecule test --scenario-name debian"
+
+  # Test: Fedora
+  - stage: "test"
+    name: "Fedora"
+    script:
+    - "molecule test --scenario-name fedora"
+
+  # Test: OpenSUSE
+  - stage: "test"
+    name: "OpenSUSE"
+    script:
+    - "molecule test --scenario-name opensuse"
+
+  # Test: Ubuntu
+  - stage: "test"
+    name: "Ubuntu"
+    script:
+    - "molecule test --scenario-name ubuntu"
 
 notifications:
   webhooks: "https://galaxy.ansible.com/api/v1/notifications/"

@@ -1,10 +1,9 @@
 ---
 ## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
 
-# tasks file for hosts
-- name: "Editing /etc/hosts entries"
+- name: "Editing hosts entries"
   blockinfile:
-    dest: "/etc/hosts"
+    dest: "{{ hosts_file }}"
     block: |
       {{ hosts_entries }}
   when: "hosts_entries is defined and hosts_entries is defined"

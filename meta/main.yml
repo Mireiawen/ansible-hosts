@@ -2,22 +2,61 @@
 ## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
 
 galaxy_info:
-  author: "ypsman"
+  author: "Mira \"Mireiawen\" Manninen"
+  role_name: "hosts"
   description: "Setup entries in hosts file (/etc/hosts)"
   license: "MIT"
+
   min_ansible_version: 1.2
   platforms:
+  - name: "Alpine"
+    versions:
+    - "any"
+  - name: "ArchLinux"
+    versions:
+    - "any"
   - name: "Debian"
     versions:
-    - "stretch"
+    # "8 Jessie"
     - "jessie"
-    - "wheezy"
+    # "9 Stretch"
+    - "stretch"
+    # "10 Buster"
+    - "buster"
+  - name: "Fedora"
+    versions:
+    - "26"
+    - "27"
+    - "28"
+    - "29"
+    - "30"
+    - "31"
+  - name: "OpenSUSE"
+    versions:
+    # "Leap 15.1"
+    - 15.1
+  # RedHat Enterprise Linux
+  - name: "EL"
+    versions:
+    - "7"
+    - "8"
   - name: "Ubuntu"
-    versions: "all"
+    versions:
+    # "14.04 Trusty"
+    - "trusty"
+    # "16.04 Xenial"
+    - "xenial"
+    # "18.04 Bionic"
+    - "bionic"
+    # "19.10 Eoan"
+    - "eoan"
+    # "20.04 Focal"
+    - "focal"
+
   galaxy_tags:
+  - "linux"
   - "hosts"
   - "hostname"
   - "dns"
-  - "ubuntu"
-  - "debian"
+
 dependencies: []

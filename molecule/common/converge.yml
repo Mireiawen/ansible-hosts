@@ -1,0 +1,19 @@
+---
+## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
+
+- name: "Converge"
+  hosts: "all"
+  vars:
+    hosts_file: "/etc/hosts.docker"
+    hosts_entries: |
+      127.0.0.1 testhost testhost.localdomain
+  tasks:
+  - name: "Make copy of the hosts file"
+    copy:
+      src: "/etc/hosts"
+      dest: "/etc/hosts.docker"
+      remote_src: true
+      force: false
+  - name: "Include mireiawen.hosts"
+    include_role:
+      name: "mireiawen.hosts"

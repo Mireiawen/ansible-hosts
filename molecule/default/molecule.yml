@@ -1,0 +1,37 @@
+---
+## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
+
+dependency:
+  name: "galaxy"
+
+driver:
+  name: "docker"
+
+platforms:
+- name: "alpine3"
+  image: "alpine:3"
+
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+
+provisioner:
+  name: "ansible"
+  playbooks:
+    converge: "../common/converge.yml"
+    verify: "../common/verify.yml"
+
+verifier:
+  name: "ansible"
+
+scenario:
+  test_sequence:
+  - "lint"
+  - "destroy"
+  - "syntax"
+  - "create"
+  - "converge"
+  - "idempotence"
+  - "verify"
+  - "destroy"

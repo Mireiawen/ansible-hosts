@@ -1,0 +1,45 @@
+---
+## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
+
+dependency:
+  name: "galaxy"
+
+driver:
+  name: "docker"
+
+platforms:
+- name: "14.04-Trusty"
+  image: "ubuntu:14.04"
+- name: "16.04-Xenial"
+  image: "ubuntu:16.04"
+- name: "18.04-Bionic"
+  image: "ubuntu:18.04"
+- name: "19.10-Eoan"
+  image: "ubuntu:19.10"
+- name: "20.04-Focal"
+  image: "ubuntu:20.04"
+
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+
+provisioner:
+  name: "ansible"
+  playbooks:
+    converge: "../common/converge.yml"
+    verify: "../common/verify.yml"
+
+verifier:
+  name: "ansible"
+
+scenario:
+  test_sequence:
+  - "lint"
+  - "destroy"
+  - "syntax"
+  - "create"
+  - "converge"
+  - "idempotence"
+  - "verify"
+  - "destroy"

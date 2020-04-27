@@ -1,0 +1,13 @@
+---
+## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
+
+- name: "Verify"
+  hosts: "all"
+  tasks:
+  - name: "Read the hosts file"
+    command: "cat '/etc/hosts.docker'"
+    register: "result"
+    changed_when: false
+  - name: "Check the install result"
+    assert:
+      that: "'testhost' in result.stdout"
