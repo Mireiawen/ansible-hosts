@@ -1,20 +1,23 @@
+---
+## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
+
 galaxy_info:
-  author: ypsman
-  description: Setup entries in hosts file (/etc/hosts)
-  license: license (GPLv2, CC-BY, etc)
+  author: "ypsman"
+  description: "Setup entries in hosts file (/etc/hosts)"
+  license: "MIT"
   min_ansible_version: 1.2
   platforms:
-  - name: Debian
+  - name: "Debian"
     versions:
-    - stretch
-    - jessie
-    - wheezy
-  - name: Ubuntu
-    versions: all
+    - "stretch"
+    - "jessie"
+    - "wheezy"
+  - name: "Ubuntu"
+    versions: "all"
   galaxy_tags:
-  - hosts
-  - hostname
-  - dns
-  - ubuntu
-  - debian
+  - "hosts"
+  - "hostname"
+  - "dns"
+  - "ubuntu"
+  - "debian"
 dependencies: []

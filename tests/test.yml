@@ -1,5 +1,7 @@
 ---
-- hosts: localhost
-  remote_user: root
+## /* vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent: */
+
+- hosts: "localhost"
+  remote_user: "root"
   roles:
-    - ypsman.hosts
+  - "ypsman.hosts"
